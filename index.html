@@ -44,6 +44,38 @@
       margin-bottom: 32px;
       color: #d6d1c7;
     }
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .category-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #22201d;
+      border: 1px solid #3a3630;
+      border-radius: 4px;
+      padding: 18px 20px;
+      color: #d4b886;
+      text-decoration: none;
+      font-size: 17px;
+      transition: background-color 0.2s;
+    }
+    .category-btn:active {
+      background-color: #2e2b26;
+    }
+    .category-sub {
+      display: block;
+      font-size: 12px;
+      color: #9e998e;
+      margin-top: 2px;
+    }
+    .arrow {
+      font-size: 18px;
+      color: #d4b886;
+    }
     section {
       margin-bottom: 34px;
     }
@@ -63,19 +95,11 @@
       margin-bottom: 12px;
       font-size: 16px;
     }
-    .item-name {
-      font-weight: normal;
-    }
     .item-price {
       color: #d4b886;
       font-size: 15px;
       white-space: nowrap;
       margin-left: 12px;
-    }
-    .item-desc {
-      font-size: 13px;
-      color: #9e998e;
-      margin: -8px 0 14px 0;
     }
     footer {
       text-align: center;
@@ -98,64 +122,44 @@
       メニューにないお酒やカクテルも、お好みに合わせてお作りいたします。どうぞお気軽にお声がけください。
     </div>
 
+    <div class="category-list">
+      <a href="whisky.html" class="category-btn">
+        <div>
+          WHISKY / ウイスキー
+          <span class="category-sub">スコッチ・ジャパニーズ・バーボンほか</span>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <a href="cocktail.html" class="category-btn">
+        <div>
+          COCKTAIL / カクテル
+          <span class="category-sub">スタンダード・季節のフルーツ・ノンアルコール</span>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+    </div>
+
     <section>
-      <h2>BEER / ビール</h2>
+      <h2>BEER &amp; OTHERS / ビール・その他</h2>
       <div class="item">
-        <span class="item-name">生ビール</span>
+        <span>生ビール</span>
         <span class="item-price">¥700</span>
       </div>
       <div class="item">
-        <span class="item-name">瓶ビール各種</span>
-        <span class="item-price">¥800〜</span>
-      </div>
-    </section>
-
-    <section>
-      <h2>WHISKY / ウイスキー</h2>
-      <div class="item">
-        <span class="item-name">スコッチ・シングルモルト</span>
+        <span>瓶ビール各種</span>
         <span class="item-price">¥800〜</span>
       </div>
       <div class="item">
-        <span class="item-name">ジャパニーズウイスキー</span>
-        <span class="item-price">¥900〜</span>
-      </div>
-      <div class="item">
-        <span class="item-name">バーボン・アメリカン</span>
-        <span class="item-price">¥800〜</span>
-      </div>
-      <p class="item-desc">ロック・水割り・ハイボール・ストレートでお楽しみいただけます。</p>
-    </section>
-
-    <section>
-      <h2>COCKTAIL / カクテル</h2>
-      <div class="item">
-        <span class="item-name">ジントニック / モスコミュール</span>
+        <span>グラスワイン（赤・白）</span>
         <span class="item-price">¥800〜</span>
       </div>
       <div class="item">
-        <span class="item-name">マティーニ / マンハッタン</span>
-        <span class="item-price">¥1,000〜</span>
-      </div>
-      <div class="item">
-        <span class="item-name">季節のフルーツカクテル</span>
-        <span class="item-price">¥1,100〜</span>
-      </div>
-      <p class="item-desc">ノンアルコールカクテルもお作りできます。</p>
-    </section>
-
-    <section>
-      <h2>WINE &amp; OTHERS / ワイン・その他</h2>
-      <div class="item">
-        <span class="item-name">グラスワイン（赤・白）</span>
-        <span class="item-price">¥800〜</span>
-      </div>
-      <div class="item">
-        <span class="item-name">焼酎・梅酒</span>
+        <span>焼酎・梅酒</span>
         <span class="item-price">¥700〜</span>
       </div>
       <div class="item">
-        <span class="item-name">ソフトドリンク各種</span>
+        <span>ソフトドリンク各種</span>
         <span class="item-price">¥500〜</span>
       </div>
     </section>
@@ -163,15 +167,15 @@
     <section>
       <h2>FOOD / おつまみ</h2>
       <div class="item">
-        <span class="item-name">ミックスナッツ / チョコレート</span>
+        <span>ミックスナッツ / チョコレート</span>
         <span class="item-price">¥500</span>
       </div>
       <div class="item">
-        <span class="item-name">チーズ盛り合わせ</span>
+        <span>チーズ盛り合わせ</span>
         <span class="item-price">¥1,000</span>
       </div>
       <div class="item">
-        <span class="item-name">生ハム・サラミ</span>
+        <span>生ハム・サラミ</span>
         <span class="item-price">¥900</span>
       </div>
     </section>
