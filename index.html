@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu | Bar</title>
+  <style>
+    body {
+      background-color: #181818;
+      color: #e6e2d8;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+      margin: 0;
+      padding: 24px 20px;
+      line-height: 1.8;
+      letter-spacing: 0.05em;
+    }
+    .container {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      border-bottom: 1px solid #3a3630;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: normal;
+      margin: 0 0 8px 0;
+      color: #d4b886;
+      letter-spacing: 0.15em;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #a39e93;
+      margin: 0;
+    }
+    .notice {
+      background-color: #22201d;
+      border-left: 3px solid #d4b886;
+      padding: 14px 16px;
+      font-size: 14px;
+      margin-bottom: 32px;
+      color: #d6d1c7;
+    }
+    section {
+      margin-bottom: 34px;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: normal;
+      color: #d4b886;
+      border-bottom: 1px solid #2e2b26;
+      padding-bottom: 6px;
+      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+    .item-name {
+      font-weight: normal;
+    }
+    .item-price {
+      color: #d4b886;
+      font-size: 15px;
+      white-space: nowrap;
+      margin-left: 12px;
+    }
+    .item-desc {
+      font-size: 13px;
+      color: #9e998e;
+      margin: -8px 0 14px 0;
+    }
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #7a756c;
+      border-top: 1px solid #3a3630;
+      padding-top: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>MENU</h1>
+      <p class="subtitle">DRINK &amp; FOOD</p>
+    </header>
+
+    <div class="notice">
+      メニューにないお酒やカクテルも、お好みに合わせてお作りいたします。どうぞお気軽にお声がけください。
+    </div>
+
+    <section>
+      <h2>BEER / ビール</h2>
+      <div class="item">
+        <span class="item-name">生ビール</span>
+        <span class="item-price">¥700</span>
+      </div>
+      <div class="item">
+        <span class="item-name">瓶ビール各種</span>
+        <span class="item-price">¥800〜</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>WHISKY / ウイスキー</h2>
+      <div class="item">
+        <span class="item-name">スコッチ・シングルモルト</span>
+        <span class="item-price">¥800〜</span>
+      </div>
+      <div class="item">
+        <span class="item-name">ジャパニーズウイスキー</span>
+        <span class="item-price">¥900〜</span>
+      </div>
+      <div class="item">
+        <span class="item-name">バーボン・アメリカン</span>
+        <span class="item-price">¥800〜</span>
+      </div>
+      <p class="item-desc">ロック・水割り・ハイボール・ストレートでお楽しみいただけます。</p>
+    </section>
+
+    <section>
+      <h2>COCKTAIL / カクテル</h2>
+      <div class="item">
+        <span class="item-name">ジントニック / モスコミュール</span>
+        <span class="item-price">¥800〜</span>
+      </div>
+      <div class="item">
+        <span class="item-name">マティーニ / マンハッタン</span>
+        <span class="item-price">¥1,000〜</span>
+      </div>
+      <div class="item">
+        <span class="item-name">季節のフルーツカクテル</span>
+        <span class="item-price">¥1,100〜</span>
+      </div>
+      <p class="item-desc">ノンアルコールカクテルもお作りできます。</p>
+    </section>
+
+    <section>
+      <h2>WINE &amp; OTHERS / ワイン・その他</h2>
+      <div class="item">
+        <span class="item-name">グラスワイン（赤・白）</span>
+        <span class="item-price">¥800〜</span>
+      </div>
+      <div class="item">
+        <span class="item-name">焼酎・梅酒</span>
+        <span class="item-price">¥700〜</span>
+      </div>
+      <div class="item">
+        <span class="item-name">ソフトドリンク各種</span>
+        <span class="item-price">¥500〜</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>FOOD / おつまみ</h2>
+      <div class="item">
+        <span class="item-name">ミックスナッツ / チョコレート</span>
+        <span class="item-price">¥500</span>
+      </div>
+      <div class="item">
+        <span class="item-name">チーズ盛り合わせ</span>
+        <span class="item-price">¥1,000</span>
+      </div>
+      <div class="item">
+        <span class="item-name">生ハム・サラミ</span>
+        <span class="item-price">¥900</span>
+      </div>
+    </section>
+
+    <footer>
+      <p>ノーチャージで1杯からお気軽にお楽しみいただけます。</p>
+    </footer>
+  </div>
+</body>
+</html>
