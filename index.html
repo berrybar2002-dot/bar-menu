@@ -61,7 +61,7 @@
       color: #d4b886;
       text-decoration: none;
       font-size: 17px;
-      transition: background-color 0.2s;
+      cursor: pointer;
     }
     .category-btn:active {
       background-color: #2e2b26;
@@ -80,13 +80,13 @@
       margin-bottom: 34px;
     }
     h2 {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: normal;
       color: #d4b886;
       border-bottom: 1px solid #2e2b26;
       padding-bottom: 6px;
       margin-bottom: 16px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
     }
     .item {
       display: flex;
@@ -101,6 +101,19 @@
       white-space: nowrap;
       margin-left: 12px;
     }
+    .back-btn {
+      display: block;
+      text-align: center;
+      background-color: #22201d;
+      border: 1px solid #3a3630;
+      border-radius: 4px;
+      padding: 14px;
+      color: #d4b886;
+      text-decoration: none;
+      font-size: 15px;
+      margin-top: 36px;
+      cursor: pointer;
+    }
     footer {
       text-align: center;
       font-size: 12px;
@@ -109,80 +122,126 @@
       padding-top: 20px;
       margin-top: 40px;
     }
+    .loading {
+      text-align: center;
+      color: #a39e93;
+      padding: 40px 0;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>MENU</h1>
-      <p class="subtitle">DRINK &amp; FOOD</p>
+      <h1 id="page-title">MENU</h1>
+      <p class="subtitle" id="page-subtitle">DRINK &amp; FOOD</p>
     </header>
 
-    <div class="notice">
-      メニューにないお酒やカクテルも、お好みに合わせてお作りいたします。どうぞお気軽にお声がけください。
+    <div id="app">
+      <div class="loading">メニューを読み込んでいます...</div>
     </div>
-
-    <div class="category-list">
-      <a href="whisky.html" class="category-btn">
-        <div>
-          WHISKY / ウイスキー
-          <span class="category-sub">スコッチ・ジャパニーズ・バーボンほか</span>
-        </div>
-        <span class="arrow">›</span>
-      </a>
-
-      <a href="cocktail.html" class="category-btn">
-        <div>
-          COCKTAIL / カクテル
-          <span class="category-sub">スタンダード・季節のフルーツ・ノンアルコール</span>
-        </div>
-        <span class="arrow">›</span>
-      </a>
-    </div>
-
-    <section>
-      <h2>BEER &amp; OTHERS / ビール・その他</h2>
-      <div class="item">
-        <span>生ビール</span>
-        <span class="item-price">¥700</span>
-      </div>
-      <div class="item">
-        <span>瓶ビール各種</span>
-        <span class="item-price">¥800〜</span>
-      </div>
-      <div class="item">
-        <span>グラスワイン（赤・白）</span>
-        <span class="item-price">¥800〜</span>
-      </div>
-      <div class="item">
-        <span>焼酎・梅酒</span>
-        <span class="item-price">¥700〜</span>
-      </div>
-      <div class="item">
-        <span>ソフトドリンク各種</span>
-        <span class="item-price">¥500〜</span>
-      </div>
-    </section>
-
-    <section>
-      <h2>FOOD / おつまみ</h2>
-      <div class="item">
-        <span>ミックスナッツ / チョコレート</span>
-        <span class="item-price">¥500</span>
-      </div>
-      <div class="item">
-        <span>チーズ盛り合わせ</span>
-        <span class="item-price">¥1,000</span>
-      </div>
-      <div class="item">
-        <span>生ハム・サラミ</span>
-        <span class="item-price">¥900</span>
-      </div>
-    </section>
 
     <footer>
       <p>ノーチャージで1杯からお気軽にお楽しみいただけます。</p>
     </footer>
   </div>
+
+  <script>
+    // ★ここにステップ1でコピーしたCSVのURLを貼り付けてください★
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvWoWef3PBYwy61COSOaebQqt3XJEBDDgQFocO241k01N3cheCtdfj5jecGJ_hf991e2RjbUrWV_Fv/pub?gid=0&single=true&output=csv";
+
+    let menuData = [];
+
+    function parseCSV(text) {
+      const lines = text.trim().split(/\r?\n/);
+      return lines.slice(1).map(line => {
+        const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.replace(/^"|"$/g, '').trim());
+        return {
+          category: (cols[0] || '').toLowerCase(),
+          sub: cols[1] || '',
+          name: cols[2] || '',
+          price: cols[3] || '',
+          show: cols[4] || '1'
+        };
+      }).filter(item => item.name && item.show !== '0');
+    }
+
+    function renderSubItems(items) {
+      const groups = {};
+      items.forEach(item => {
+        const key = item.sub || 'MENU';
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(item);
+      });
+
+      let html = '';
+      for (const [subTitle, groupItems] of Object.entries(groups)) {
+        html += `<section><h2>${subTitle}</h2>`;
+        groupItems.forEach(item => {
+          html += `
+            <div class="item">
+              <span>${item.name}</span>
+              <span class="item-price">${item.price}</span>
+            </div>`;
+        });
+        html += `</section>`;
+      }
+      return html;
+    }
+
+    function showHome() {
+      document.getElementById('page-title').textContent = 'MENU';
+      document.getElementById('page-subtitle').textContent = 'DRINK & FOOD';
+
+      let html = `
+        <div class="notice">
+          メニューにないお酒やカクテルも、お好みに合わせてお作りいたします。どうぞお気軽にお声がけください。
+        </div>
+        <div class="category-list">
+          <div class="category-btn" onclick="showCategory('whisky', 'WHISKY', 'ウイスキーメニュー')">
+            <div>
+              WHISKY / ウイスキー
+              <span class="category-sub">スコッチ・ジャパニーズ・バーボンほか</span>
+            </div>
+            <span class="arrow">›</span>
+          </div>
+          <div class="category-btn" onclick="showCategory('cocktail', 'COCKTAIL', 'カクテルメニュー')">
+            <div>
+              COCKTAIL / カクテル
+              <span class="category-sub">スタンダード・季節のフルーツ・ノンアルコール</span>
+            </div>
+            <span class="arrow">›</span>
+          </div>
+        </div>
+      `;
+
+      const otherAndFood = menuData.filter(d => d.category === 'other' || d.category === 'food');
+      html += renderSubItems(otherAndFood);
+
+      document.getElementById('app').innerHTML = html;
+      window.scrollTo(0, 0);
+    }
+
+    function showCategory(catKey, title, subtitle) {
+      document.getElementById('page-title').textContent = title;
+      document.getElementById('page-subtitle').textContent = subtitle;
+
+      const filtered = menuData.filter(d => d.category === catKey);
+      let html = renderSubItems(filtered);
+      html += `<div class="back-btn" onclick="showHome()">← トップメニューに戻る</div>`;
+
+      document.getElementById('app').innerHTML = html;
+      window.scrollTo(0, 0);
+    }
+
+    fetch(CSV_URL)
+      .then(res => res.text())
+      .then(text => {
+        menuData = parseCSV(text);
+        showHome();
+      })
+      .catch(() => {
+        document.getElementById('app').innerHTML = '<div class="loading">メニューの読み込みに失敗しました。</div>';
+      });
+  </script>
 </body>
 </html>
