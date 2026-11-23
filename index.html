@@ -156,11 +156,11 @@
       return lines.slice(1).map(line => {
         const cols = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(s => s.replace(/^"|"$/g, '').trim());
         return {
-          category: (cols[0] || '').toLowerCase(),
-          sub: cols[1] || '',
-          name: cols[2] || '',
-          price: cols[3] || '',
-          show: cols[4] || '1'
+          category: (cols.at(0) || '').toLowerCase(),
+          sub: cols.at(1) || '',
+          name: cols.at(2) || '',
+          price: cols.at(3) || '',
+          show: cols.at(4) || '1'
         };
       }).filter(item => item.name && item.show !== '0');
     }
